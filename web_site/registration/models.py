@@ -13,4 +13,4 @@ class MasterClass(models.Model):
 
 class Entry(models.Model):
     user_id     = models.IntegerField(default=0)
-    master_class_id = models.ForeignKey(MasterClass)
+    master_class_id = models.ForeignKey(MasterClass, models.CASCADE)
