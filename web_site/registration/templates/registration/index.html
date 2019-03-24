@@ -4,9 +4,8 @@
 			<li>
 				<div class="curse">
 					<h4>{{mk.name}}</h4>
-					<h5>from {{mk.date_start}} to {{mk.date_end}}</h5>
 					<p>{{mk.description}}</p>
-					<button>subscribe</button>
+					<a href="/registration/{{mk.id}}">add entry</a>
 				</div>
 			</li>
 		{% endfor %}
