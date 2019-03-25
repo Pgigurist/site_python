@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+	</head>
+	<body>
+		<div id="header" class="header">
+			{% block header %}{% endblock %}
+		</div>
+		<div id="content">
+			{% block content %}{% endblock %}
+		</div>
+		<div class="footer">
+			{% include "registration/footer.html" %}
+		</div>
+	</div>
+</body>
+</html>
