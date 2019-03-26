@@ -4,7 +4,8 @@ from .models import MasterClass, Entry
 # Register your models here.
 
 class MasterClassAdmin(admin.ModelAdmin):
-    listDisplay = ('name', 'date_start', 'date_end') 
+    list_display = [field.name for field in MasterClass._meta.fields]
+   # listDisplay = ('name', 'date_start', 'date_end')
     inLine = [Entry]
 
 admin.site.register(MasterClass, MasterClassAdmin)

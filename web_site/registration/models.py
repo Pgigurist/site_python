@@ -12,5 +12,6 @@ class MasterClass(models.Model):
         return self.name
 
 class Entry(models.Model):
-    user_id     = models.IntegerField(default=0)
+    user_id = models.PositiveIntegerField(default=0)
     master_class_id = models.ForeignKey(MasterClass, models.CASCADE)
+    verbose_name_plural = "Master Classes"
