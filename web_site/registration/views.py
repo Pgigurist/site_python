@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import MasterClass
 from django.http import Http404
+from django.template import Context, Template
+from django.http import HttpResponse
+
 # Create your views here.
 
 def index(req):
