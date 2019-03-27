@@ -8,8 +8,8 @@ class MasterClassAdmin(admin.ModelAdmin):
    # listDisplay = ('name', 'date_start', 'date_end')
     exclude = ["id"]
     inLine = [Entry]
-    search_fields = ['name', 'date_start', 'date_end'] ###subject add
-    list_filter = ["date_start", 'date_end']#subject
+    #search_fields = ['name', 'date_start', 'date_end'] ###subject add
+    #list_filter = ["date_start", 'date_end']#subject
 
 class EntryAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Entry._meta.fields]

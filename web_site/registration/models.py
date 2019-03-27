@@ -1,5 +1,5 @@
 from datetime import date
-
+import django
 from django.db import models
 
 
@@ -8,10 +8,10 @@ from django.db import models
 class MasterClass(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    date_start = models.DateTimeField(default=date.today)
+    date_start = models.DateTimeField(default=django.utils.timezone.now)
     subject = models.Case()
     # availiable_seats = models.Count(default=50) ####после регистрации каждого участика будет -1
-    date_end = models.DateTimeField(default=date.today)
+    date_end = models.DateTimeField(default=django.utils.timezone.now)
 
 
 class Meta:
