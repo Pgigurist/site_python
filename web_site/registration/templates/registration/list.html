@@ -1,0 +1,25 @@
+{% extends "registration/index.html" %}
+{% block content %}
+<!--comment>
+    need data: [
+        master_class: {
+
+            }
+        ]
+</comment-->
+<ul>
+    {% for mk in master_classes_list %}
+        <li>
+            <div class="">
+                <h4>{{mk.name}}</h4>
+                <h6>{{mk.date_start}}</h6>
+                <div class="description">
+                    <p>{{mk.description}}</p>
+                </div>
+            </div>
+        </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}
