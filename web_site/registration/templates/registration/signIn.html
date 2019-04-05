@@ -1,5 +1,7 @@
 <form action="" method="post" enctype="multipart/from-data">
-	{% crf_token %}
+	{% csrf_token %}
+	<input type="text"/>
+	<input type="text"/>
 	{{form}}
 	<input type="submit" value="Submit"/>
 </form>

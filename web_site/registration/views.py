@@ -8,6 +8,7 @@ from django.http import HttpResponse
 
 def index(req):
     return HttpResponse("registration app")
+    
 
 def MKList(req):
     master_classes_list = MasterClass.objects.all()
@@ -20,4 +21,8 @@ def MKDetalis(req, mk_id):
         mk = MasterClass.objects.get(pk=mk_id)
     except MasterClass.DoesNotExist:
         raise Http404('obj does not exist')
-    return render(req, 'registration/mkdetalis.html', context)
+    return render(req, 'registration/mkdetalis.html', mk)
+
+def Landing(req):
+
+    return render(req, 'registration/landing.html')
