@@ -5,19 +5,5 @@
 {% endblock %}
 
 {% block content %}
-	{% if master_classes_list %}
-		<ul>
-			{% for mk in master_classes_list %}
-				<li>
-					<div>
-						<h4>{{mk.name}}</h4>
-						<p>{{mk.description}}</p>
-						<a href="/registration/{{mk.id}}">add entry</a>
-					</div>
-				</li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<p>no published master classes now</p>
-	{% endif %}
+	{% include "registration/carousel.html" %}
 {% endblock %}
