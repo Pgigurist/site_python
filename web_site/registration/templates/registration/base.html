@@ -8,8 +8,9 @@
 	<body>
 
 		<header>
-			<!--rm>{% block header %}{% endblock %}</rm-->
-			{% include "registration/header.html" %}
+			{% block header %}
+			{% endblock %}
+			<!--rm>{% include "registration/header.html" %}</rm-->
 		</header>
 		<div id="content">
 			{% block content %}{% endblock %}
