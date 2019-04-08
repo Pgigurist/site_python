@@ -12,7 +12,7 @@ class MasterClass(models.Model):
     subject = models.Case()
     # availiable_seats = models.Count(default=50) ####после регистрации каждого участика будет -1
     date_end = models.DateTimeField(default=django.utils.timezone.now)
-
+verbose_name_plural = "stories"
 
 class Meta:
     verbose_name = "Master Class"
