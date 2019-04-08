@@ -1,15 +1,9 @@
-{% if master_classes_list %}
-	<ul>
-		{% for mk in master_classes_list %}
-			<li>
-				<div class="curse">
-						<h4><a href="/{{mk.id}}">{{mk.name}}</a></h4>
-					<p>{{mk.description}}</p>
-					
-				</div>
-			</li>
-		{% endfor %}
-	</ul>
-{% else %}
-	<p>no published master classes now</p>
-{% endif %}
+
+{% extends "registration/base.html" %}
+
+
+
+{% block content %}
+	{% include "registration/carousel.html" %}
+{% endblock %}
+
