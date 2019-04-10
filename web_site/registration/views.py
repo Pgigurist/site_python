@@ -32,8 +32,8 @@ def MKDetalis(req, mk_id):
         mk = MasterClass.objects.get(pk=mk_id)
     except MasterClass.DoesNotExist:
         raise Http404('obj does not exist')
-    #return render(req, 'registration/mkdetalis.html', mk)
-    pass
+    return render(req, 'registration/mkdetalis.html', mk)
+    #pass
 
 def Landing(req):
 
