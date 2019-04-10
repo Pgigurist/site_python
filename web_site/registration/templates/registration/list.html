@@ -7,19 +7,21 @@
             }
         ]
 </comment-->
-<ul>
-    {% for mk in master_classes_list %}
-        <li>
-            <div class="">
-                <h4>{{mk.name}}</h4>
-                <h6>{{mk.date_start}}</h6>
-                <div class="description">
-                    <p>{{mk.description}}</p>
+<div class="col-2"></div>
+<div class="col-6 pt-4">
+    <ul>
+        {% for mk in master_classes_list %}
+            <li>
+                <div class="">
+                    <h4>{{mk.name}}</h4>
+                    <h6>{{mk.date_start}}</h6>
+                    <div class="description">
+                        <p>{{mk.description}}</p>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
 
-    {% endfor %}
-</ul>
-
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
