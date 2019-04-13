@@ -2,8 +2,9 @@ from datetime import date
 import django
 from django.db import models
 
-
 # Create your models here.
+
+
 
 class MasterClass(models.Model):
     name = models.CharField(max_length=100)

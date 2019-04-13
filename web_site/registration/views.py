@@ -3,6 +3,7 @@ from .models import MasterClass
 from django.http import Http404
 from django.template import Context, Template
 from django.http import HttpResponse
+from django.contrib import auth
 
 # Create your views here.
 
@@ -35,11 +36,17 @@ def MKDetalis(req, mk_id):
     return render(req, 'registration/mkdetalis.html', mk)
     #pass
 
+@login_user_required(login_url="/teacherPlan/login")
 def Landing(req):
-
-    return render(req, 'registration/landing.html')
+    if req.method == 'POST':
+        username = req.POST['loginField']
+        password = req.POST['passwordField']
+        print username
+        print passworuser
+        user = auth.authenticate(username=username, password=password)
 
 def account(req):
+
     """
     отдает user_data, user_entries, user_schedule
     :param req:
