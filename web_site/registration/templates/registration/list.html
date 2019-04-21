@@ -11,16 +11,22 @@
 <div class="col-6 pt-4">
     <ul>
         {% for mk in master_classes_list %}
-            <li>
-                <div class="">
-                    <!--h4>{{mk.name}}</h4-->
-                    <h4><a href="">{{mk.name}}</a></h4>
-                    <h6>{{mk.date_start}}</h6>
-                    <div class="description">
-                        <p>{{mk.description}}</p>
+
+                <div class="card text-white bg-primary">
+                    <div class="card-header">
+                        {{mk.date_start}}
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">{{mk.name}}</h6>
+                        <p class="card-text">{{mk.description}}</p>
+                        {% if auth == 'yes' %}
+                            <a class="ard-link text-dark" href="">записаться</a>
+                        {% else %}
+                            <a class="ard-link text-dark" href="/registration/register">зарегистрироваться</a>
+                        {% endif %}
                     </div>
                 </div>
-            </li>
+
 
         {% endfor %}
     </ul>

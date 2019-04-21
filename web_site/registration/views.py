@@ -32,6 +32,11 @@ def signup(request):
 
 def index(req):
     #return HttpResponse("registration app")
+    if "member_id" in req.session:
+        print('user autorized!')
+        return render(req, 'registration/index.html', {'auth' : 'yes'})
+    else:
+        print('unknown user')
     return render(req, 'registration/index.html')
 
 def MKList(req):
@@ -40,9 +45,13 @@ def MKList(req):
     :param req:
     :return:
     """
+    #print('new req with {} '.format(req.session[member_id]))
     master_classes_list = MasterClass.objects.all()
     #print(master_classes_list)
-    context = RequestContext = {'master_classes_list' : master_classes_list}
+    if "member_id" in req.session:
+        context = RequestContext = {'master_classes_list': master_classes_list, 'auth' : 'yes'}
+    else:
+        context = RequestContext = {'master_classes_list' : master_classes_list}
     return render(req, 'registration/list.html', context)
 
 def MKDetalis(req, mk_id):
@@ -99,6 +108,8 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
+                request.session['member_id'] = user.id#'auth'
+                print('new session with {} '.format(request.session['member_id']))
                 return HttpResponseRedirect(reverse('index'))
             else:
                 return HttpResponse("Your account was inactive.")

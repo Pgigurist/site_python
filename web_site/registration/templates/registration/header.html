@@ -11,13 +11,18 @@
               <li class="nav-item active">
                   <a class="nav-link" href="/registration/list">курсы</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/registration/user_login/">войти</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/registration/register/">регистрация</a>
-              </li>
-
+              {% if auth == 'yes' %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="/registration/user_login/">выйти</a>
+                  </li>
+              {% else %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="/registration/user_login/">войти</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/registration/register/">регистрация</a>
+                  </li>
+              {% endif %}
           </ul>
           <!--form class="form-inline my-2 my-lg-0">
       		<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
