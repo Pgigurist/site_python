@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from .models import MasterClass, Entry
+from .models import MasterClass, Entry, User, UserProfileInfo
 # Register your models here.
 
 class MasterClassAdmin(admin.ModelAdmin):
@@ -21,4 +21,5 @@ class EntryAdmin(admin.ModelAdmin):
 
 admin.site.register(MasterClass, MasterClassAdmin)
 admin.site.register(Entry)
+admin.site.register(UserProfileInfo)
 

@@ -1,7 +1,28 @@
 from django import forms
-from .models import *
+from registration.models import UserProfileInfo
+from django.contrib.auth.models import User
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    class Meta():
+        model = User
+        fields = ('username', 'password', 'email')
+
+class UserProfileInfoForm(forms.ModelForm):
+    class Meta():
+        model = UserProfileInfo
+        fields = ('group',)
+
+
+
+"""
+from django import forms
+from registration.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+
 
 class SignUpForm (UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -43,3 +64,4 @@ class RegisterUserForm(forms.form):
         max_length=100,
         required=True,
     )
+"""

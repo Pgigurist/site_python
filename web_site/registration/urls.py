@@ -1,13 +1,15 @@
 from django.conf.urls import url
 from . import views
 
-
+#SET NAMESPACE
+app_name = 'registration'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^list/$', views.MKList, name='mk_list'),
-    url(r'^(?P<mk_id>[0-9]+)/$', views.MKDetalis, name='mk_id'),
-    url(r'^landing/$', views.Landing, name='landing'),
-    url(r'^signup/$', views.signup, name='signup'),
+    #url(r'^$', views.index, name='index'),#index page
+    url(r'^list/$', views.MKList, name='mk_list'), #mkList
+    url(r'^(?P<mk_id>[0-9]+)/$', views.MKDetalis, name='mk_id'),#mk detalis
+    #url(r'^landing/$', views.Landing, name='landing'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^user_login/$', views.user_login, name='user_login'),
 
 ]
