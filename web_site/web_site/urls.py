@@ -29,8 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^special/', views.special, name='special'),
-    url(r'^logout/$', views.user_logout, name='logout'),
-    #url(r'^admin/', admin.site.urls),
+    #url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^registration/', include('registration.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls'))
+    url(r'^logout/$', views.user_logout, name='logout'),
+
 ]

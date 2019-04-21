@@ -1,4 +1,4 @@
-{% extends 'registration/base.html' %}
+{% extends "registration/base.html" %}
 
 {% load staticfiles %}
 
@@ -12,7 +12,7 @@
         <h1>Register heare</h1>
         <h3>Just fill out the form</h3>
 
-        <form enctype="multipart/form-data" action="POST">
+        <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ user_form.as_p }}
             {{ profile_form.as_p }}

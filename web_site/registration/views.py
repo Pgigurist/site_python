@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 #from django.template import Context, Template
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse
 from .models import MasterClass #, UserForm, UserProfileInfoForm
 
 
@@ -73,15 +73,12 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
-        if users_form.is_valid() and UserProfileInfoForm.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-            if 'profile_pic' in request.FILES:
-                print('found it')
-                profile.profile_pic = request.FILES['profile_pic']
             profile.save()
             registered = True
         else:
@@ -89,20 +86,19 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
-    return render(request, 'registration/registration.html', {
-        'user_form': user_form,
-        'profile_form': profile_form,
-        'registered': registered
-    })
+    return render(request, 'registration/registration.html',
+    {'user_form': user_form,
+     'profile_form': profile_form,
+     'registered': registered})
 
-def user_login(reqest):
+def user_login(request):
     if request.method == 'POST':
-        username = reqest.POST.get('username')
-        password = reqest.POST.get('password')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
-                login(reqest, user)
+                login(request, user)
                 return HttpResponseRedirect(reverse('index'))
             else:
                 return HttpResponse("Your account was inactive.")
@@ -111,4 +107,4 @@ def user_login(reqest):
             print("They used username: {} and password: {}".format(username, password))
             return HttpResponse("Invalid login detalis given")
     else:
-        return render(reqest, 'registration/login.html', {})
+        return render(request, 'registration/login.html', {})
