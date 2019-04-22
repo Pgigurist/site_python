@@ -2,21 +2,22 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="jumbotron">
-        <h1>Login here :</h1>
-        <form method="POST" action="{% url 'registration:user_login' %}">
+<div class="container col-3 pt-4">
+    <!--div class="jumbotron"-->
 
-            <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Username">
+        <form class="form-singin" role="form" method="POST" action="{% url 'registration:user_login' %}">
+            <h1 class="form-singin-heading">Login here :</h1>
+            <!--label for="username">Username:</label-->
+            <input class="form-control" type="text" name="username" placeholder="Email address">
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" placeholder="Password">
+            <!--label for="password">Password:</label-->
+            <input class="form-control" type="password" name="password" placeholder="Password">
 
-            <input type="submit" name="" value="Login">
+            <!--input type="submit" name="" value="Login"-->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">войти</button>
             {% csrf_token %}
         </form>
-    </div>
+    <!--/div-->
 </div>
 
 {% endblock %}
