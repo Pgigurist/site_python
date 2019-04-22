@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     group = models.CharField(max_length=10)
@@ -22,8 +23,8 @@ class MasterClass(models.Model):
 verbose_name_plural = "stories"
 
 class Meta:
-    verbose_name = "Master Class"
-    verbose_name_plural = "Master Classes"
+    verbose_name = "Курс"
+    verbose_name_plural = "Курсы"
 
 
 def __str__(self):
@@ -34,13 +35,13 @@ class Entry(models.Model):
     user_id = models.PositiveIntegerField(default=0)
     master_class_id = models.ForeignKey(MasterClass, models.CASCADE)
    # group_id = models.PositiveIntegerField(default=0)
-    verbose_name = "Entry"
-    verbose_name_plural = "Entries"
+    verbose_name = "Заявка"
+    verbose_name_plural = "Заявки на участие"
 
 
 class Meta:
-    verbose_name = "Entry"
-    verbose_name_plural = "Entries"
+    verbose_name = "Заявка"
+    verbose_name_plural = "Заявки на участие"
 
 
 
