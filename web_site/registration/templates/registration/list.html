@@ -13,10 +13,10 @@
             {% for mk in master_classes_list %}
                     <div class="card ">
                         <div class="card-header mb-2 bg-warning text-white">
-                            {{mk.date_start}}
+                            <h6 class="card-title">{{mk.name}}</h6>
                         </div>
                         <div class="card-body text-dark">
-                            <h6 class="card-title">{{mk.name}}</h6>
+                            <p class="card-text">начало: {{mk.date_start}} конец: {{mk.date_end}}</p>
                             <p class="card-text">{{mk.description}}</p>
                             {% if auth == 'yes' %}
                                 <a class="ard-link text-dark" href="">записаться</a>
@@ -39,6 +39,14 @@
         <p>Пожалуйста <a href="/registration/user_login">войдите на сайт</a> или <a href="/registration/register">зарегистрируйтесь</a>.</p>
         <p>Мы будем вам очень рады :)</p>
         {% endif %}
+
+        {% for entry in entries_list %}
+
+        <div class="pt-2 bg-warning border-1">
+            <center>{{entry.master_class_id.name}}</center>
+        </div>
+
+        {% endfor %}
     </div>
 
 </div>

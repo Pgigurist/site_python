@@ -5,30 +5,13 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 #from django.template import Context, Template
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .models import MasterClass #, UserForm, UserProfileInfoForm
+from .models import MasterClass, Entry #, UserForm, UserProfileInfoForm
 
 
 
 #from django.contrib.auth.forms import UserCreationForm
 
 # Create your views heqqg
-"""
-def signup(request):
-
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        print('test')
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
-"""
 
 def index(req):
     #return HttpResponse("registration app")
@@ -52,10 +35,21 @@ def MKList(req):
     master_classes_list = MasterClass.objects.all()
     #print(master_classes_list)
     if "member_id" in req.session:
-        context = RequestContext = {'master_classes_list': master_classes_list, 'auth' : 'yes', 'user': req.session['member_name']}
+
+        #entry_id_list =
+        #entry_list = []
+        #for entry_id in entry_id_list:
+            #entry_list.append(MasterClass.objects.filter(foreginKey=entry_id.master_class_id))
+        context = RequestContext = {
+            'master_classes_list': master_classes_list,
+            'auth' : 'yes',
+            'user': req.session['member_name'],
+            'entries_list': Entry.objects.filter(user_id=req.session['member_id'])
+        }
     else:
         context = RequestContext = {'master_classes_list' : master_classes_list}
     return render(req, 'registration/list.html', context)
+
 
 def MKDetalis(req, mk_id):
     """
