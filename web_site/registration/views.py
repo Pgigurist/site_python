@@ -32,12 +32,15 @@ def signup(request):
 
 def index(req):
     #return HttpResponse("registration app")
+    #context = ''
+    master_classes_list =  MasterClass.objects.all()
     if "member_id" in req.session:
         print('user autorized!')
-        return render(req, 'registration/index.html', {'auth' : 'yes'})
+        #context.auth = 'yes'
+        return render(req, 'registration/index.html',{'master_classes_list': master_classes_list ,'auth' : 'yes'})
     else:
         print('unknown user')
-    return render(req, 'registration/index.html')
+    return render(req, 'registration/index.html', {'master_classes_list' :master_classes_list})
 
 def MKList(req):
     """
@@ -49,7 +52,7 @@ def MKList(req):
     master_classes_list = MasterClass.objects.all()
     #print(master_classes_list)
     if "member_id" in req.session:
-        context = RequestContext = {'master_classes_list': master_classes_list, 'auth' : 'yes'}
+        context = RequestContext = {'master_classes_list': master_classes_list, 'auth' : 'yes', 'user': req.session['member_name']}
     else:
         context = RequestContext = {'master_classes_list' : master_classes_list}
     return render(req, 'registration/list.html', context)
@@ -105,10 +108,13 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+
         if user:
             if user.is_active:
                 login(request, user)
-                request.session['member_id'] = user.id#'auth'
+                request.session['member_id'] = user.id
+                request.session['member_name'] = user.username
+
                 print('new session with {} '.format(request.session['member_id']))
                 return HttpResponseRedirect(reverse('index'))
             else:

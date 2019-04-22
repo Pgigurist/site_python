@@ -7,28 +7,31 @@
             }
         ]
 </comment-->
-<div class="col-2"></div>
-<div class="col-6 pt-4">
-    <ul>
-        {% for mk in master_classes_list %}
-
-                <div class="card ">
-                    <div class="card-header mb-2 bg-warning text-white">
-                        {{mk.date_start}}
+<div class="row">
+    <div class="col-6 pt-4  border-1 border-primary">
+        <ul>
+            {% for mk in master_classes_list %}
+                    <div class="card ">
+                        <div class="card-header mb-2 bg-warning text-white">
+                            {{mk.date_start}}
+                        </div>
+                        <div class="card-body text-dark">
+                            <h6 class="card-title">{{mk.name}}</h6>
+                            <p class="card-text">{{mk.description}}</p>
+                            {% if auth == 'yes' %}
+                                <a class="ard-link text-dark" href="">записаться</a>
+                            {% else %}
+                                <!--a class="ard-link text-dark" href="/registration/register">зарегистрироваться</a-->
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="card-body text-dark">
-                        <h6 class="card-title">{{mk.name}}</h6>
-                        <p class="card-text">{{mk.description}}</p>
-                        {% if auth == 'yes' %}
-                            <a class="ard-link text-dark" href="">записаться</a>
-                        {% else %}
-                            <a class="ard-link text-dark" href="/registration/register">зарегистрироваться</a>
-                        {% endif %}
-                    </div>
-                </div>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-4 pt-4">
+        <h3>добро пожаловать {{user}}!</h3>
+        <p>вы записаны на:</p>
+    </div>
 
-
-        {% endfor %}
-    </ul>
 </div>
 {% endblock %}
