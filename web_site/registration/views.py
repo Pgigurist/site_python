@@ -11,16 +11,16 @@ from .models import MasterClass, Entry #, UserForm, UserProfileInfoForm
 
 #from django.contrib.auth.forms import UserCreationForm
 
-# Create your views heqqg
 
-def index(req):
-    #return HttpResponse("registration app")
-    #context = ''
-    master_classes_list =  MasterClass.objects.all()
+def index(req): #
+
+    master_classes_list =  MasterClass.objects.all() # обьект для карусели, берем все МК,
+                                                    # сортируем по id и забираем 3  последних элементаэлемента
     if "member_id" in req.session:
         print('user autorized!')
-        #context.auth = 'yes'
+
         return render(req, 'registration/index.html',{'master_classes_list': master_classes_list ,'auth' : 'yes'})
+        #
     else:
         print('unknown user')
     return render(req, 'registration/index.html', {'master_classes_list' :master_classes_list})
@@ -74,7 +74,7 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
 
-def register(request):
+def register(request): # передаем запрос, пользователю отдали форму,
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
@@ -97,14 +97,14 @@ def register(request):
      'profile_form': profile_form,
      'registered': registered})
 
-def user_login(request):
+def user_login(request): #вход на сайт
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active:
+            if user.is_active: # 109-110 обьект session, к user вешаем два флага, id и name. для того чтобы во view было приветствие.
                 login(request, user)
                 request.session['member_id'] = user.id
                 request.session['member_name'] = user.username

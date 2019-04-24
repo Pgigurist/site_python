@@ -26,8 +26,7 @@ SECRET_KEY = 'eug0pwuzn7h6(y!1@f8(m5d@=jg530*3xj#6!utc0ckoofp=o4'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.34',
-    'localhost'
+
 ]
 
 
@@ -108,6 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 #LANGUAGE_CODE = 'en-us'
+#руссификация админки
 LANGUAGE_CODE = 'ru-Ru'
 
 TIME_ZONE = 'Europe/Moscow'
