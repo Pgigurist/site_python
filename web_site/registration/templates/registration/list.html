@@ -19,7 +19,7 @@
                             <p class="card-text">начало: {{mk.date_start}} конец: {{mk.date_end}}</p>
                             <p class="card-text">{{mk.description}}</p>
                             {% if auth == 'yes' %}
-                                <a class="ard-link text-dark" href="">записаться</a>
+							<a class="ard-link text-dark" href="/registration/list/createEntry/?mk_id={{mk.id}}">записаться</a>
                             {% else %}
                                 <!--a class="ard-link text-dark" href="/registration/register">зарегистрироваться</a-->
                             {% endif %}

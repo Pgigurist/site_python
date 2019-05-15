@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^(?P<mk_id>[0-9]+)/$', views.MKDetalis, name='mk_id'),#MK detalis
     url(r'^register/$', views.register, name='register'),
     url(r'^user_login/$', views.user_login, name='user_login'),
+    url(r'^list/createEntry/$', views.createEntry, name="create_entry"),
 ]

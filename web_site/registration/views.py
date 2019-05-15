@@ -65,6 +65,13 @@ def MKDetalis(req, mk_id):
     return render(req, 'registration/mkdetalis.html', mk)
     #pass
 
+def createEntry(req):
+    entry = Entry()
+    entry.user_id = req.user.id
+    entry.master_class_id = MasterClass.objects.get(pk=int(req.GET['mk_id']))
+    entry.save()
+    return HttpResponseRedirect('/registration/list')
+
 @login_required
 def special(request):
     return HttpResponse("Logged!")
