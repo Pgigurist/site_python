@@ -25,12 +25,12 @@ class MasterClass(models.Model):
     subject = models.Case()
     #availiable_seats = models.Count(default=50) ####после регистрации каждого участика будет -1
     date_end = models.DateTimeField(default=django.utils.timezone.now)
-
+    #seats = models.ManyToManyField(Entry) 
 
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
-
+    
 
     def __str__(self):
         return self.name
