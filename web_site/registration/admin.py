@@ -14,6 +14,8 @@ class EntryAdmin(admin.ModelAdmin):
     def user_name(self, obj):
         name = User.objects.filter(self.user_id)
         return name
+
+
     inline = [EntryInline]
     search_fields = ['master_class_id', 'user_id'] ###group number add
     #list_filter = ["date_start", 'date_end']#grouip number

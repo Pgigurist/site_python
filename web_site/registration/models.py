@@ -56,5 +56,8 @@ class Entry(models.Model):
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки на участие"
 
+    def __str__(self):
+        text = self.master_class_id.name
+        return text
 
 
