@@ -18,7 +18,7 @@
                         <div class="card-body text-dark">
                             <p class="card-text">начало: {{mk.date_start}} конец: {{mk.date_end}}</p>
                             <p class="card-text">{{mk.description}}</p>
-                            {% if auth == 'yes' %}
+                            {% if request.user.is_authenticated and request.user.is_superuser == False %}
 							<a class="ard-link text-dark" href="/registration/list/createEntry/?mk_id={{mk.id}}">записаться</a>
                             {% else %}
                                 <!--a class="ard-link text-dark" href="/registration/register">зарегистрироваться</a-->
@@ -29,8 +29,13 @@
         </ul>
     </div>
     <div class="col-4 pt-4">
-        {% if "member_id" in request.session %}
-        <h3>добро пожаловать {{user}}!</h3>
+		
+        {% if request.user.is_authenticated %}
+			{% if request.user.is_superuser %}
+				<p>Здравствуйте, вы суперпользователь. Пожалуйста редактируйте информацию через <a href="/admin">админ панель</a></p>
+			{% else %}
+        		<h3>добро пожаловать {{user}}!</h3>
+			{% endif %}
         <p>вы записаны на:</p>
         {% else %}
         <h3>Вы анонимный пользователь</h3>
@@ -39,7 +44,8 @@
         <p>Пожалуйста <a href="/registration/user_login">войдите на сайт</a> или <a href="/registration/register">зарегистрируйтесь</a>.</p>
         <p>Мы будем вам очень рады :)</p>
         {% endif %}
-
+		
+		{% if request.user.isSuperuser != True %}
         {% for entry in entries_list %}
 
         <div class="pt-2 bg-warning border-1">
@@ -51,7 +57,8 @@
         </div>
 
         {% endfor %}
-    </div>
+		{% endif %}    	
+	</div>
 
 </div>
 {% endblock %}
