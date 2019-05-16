@@ -23,9 +23,17 @@ class MasterClass(models.Model):
     description = models.CharField(max_length=300)
     date_start = models.DateTimeField(default=django.utils.timezone.now)
     subject = models.Case()
-    #availiable_seats = models.Count(default=50) ####после регистрации каждого участика будет -1
+    #availiable_seats = .count() ####после регистрации каждого участика будет -1
     date_end = models.DateTimeField(default=django.utils.timezone.now)
-    #seats = models.ManyToManyField(Entry) 
+    seats = models.PositiveSmallIntegerField(default=50)
+
+    def incrimentSeat(self):
+        self.seats = self.seats-1
+        self.save()
+
+    def decrimentSeat(self):
+        self.seats = self.seats+1
+        self.save()
 
     class Meta:
         verbose_name = "Курс"
@@ -37,7 +45,7 @@ class MasterClass(models.Model):
 
 
 class Entry(models.Model):
-    user_id = models.PositiveIntegerField(default=0)
+    user_id = models.ForeignKey(User, models.CASCADE)#models.PositiveIntegerField(default=0)
     master_class_id = models.ForeignKey(MasterClass, models.CASCADE)
    # group_id = models.PositiveIntegerField(default=0)
     verbose_name = "Заявка"
@@ -47,7 +55,6 @@ class Entry(models.Model):
     class Meta:
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки на участие"
-
 
 
 

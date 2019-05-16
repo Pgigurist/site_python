@@ -16,6 +16,7 @@
                             <h6 class="card-title">{{mk.name}}</h6>
                         </div>
                         <div class="card-body text-dark">
+							<p>осталось мест: {{mk.seats}}</p>
                             <p class="card-text">начало: {{mk.date_start}} конец: {{mk.date_end}}</p>
                             <p class="card-text">{{mk.description}}</p>
                             {% if request.user.is_authenticated and request.user.is_superuser == False %}

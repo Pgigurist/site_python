@@ -67,14 +67,21 @@ def MKDetalis(req, mk_id):
 
 def createEntry(req):
     entry = Entry()
-    entry.user_id = req.user.id
+    entry.user_id = req.user
     entry.master_class_id = MasterClass.objects.get(pk=int(req.GET['mk_id']))
+    MasterClass.objects.get(pk=int(req.GET['mk_id'])).incrimentSeat()
+    #mk.seats = mk.seats-1
+    #mk.save()
+    
+    #print(mk.seats)
+    #entry.master_class_id.save()
     entry.save()
     return HttpResponseRedirect('/registration/list')
 
 def removeEntry(req):
     instanse = Entry.objects.filter(user_id=req.user.id, master_class_id=int(req.GET['master_class_id']))
     #Entry.objects.filter(user_id=req.user.id, master_class_id=int(req.GET['mk_id']).delete()
+    MasterClass.objects.get(pk=int(req.GET['master_class_id'])).decrimentSeat()
     instanse.delete()
     return HttpResponseRedirect('/registration/list')
 
