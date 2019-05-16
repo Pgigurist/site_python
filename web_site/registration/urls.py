@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^user_login/$', views.user_login, name='user_login'),
     url(r'^list/createEntry/$', views.createEntry, name="create_entry"),
+    url(r'^list/removeEntry/$', views.removeEntry, name="remove_entry"),
 ]

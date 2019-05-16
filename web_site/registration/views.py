@@ -72,6 +72,12 @@ def createEntry(req):
     entry.save()
     return HttpResponseRedirect('/registration/list')
 
+def removeEntry(req):
+    instanse = Entry.objects.filter(user_id=req.user.id, master_class_id=int(req.GET['master_class_id']))
+    #Entry.objects.filter(user_id=req.user.id, master_class_id=int(req.GET['mk_id']).delete()
+    instanse.delete()
+    return HttpResponseRedirect('/registration/list')
+
 @login_required
 def special(request):
     return HttpResponse("Logged!")

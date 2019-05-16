@@ -43,7 +43,11 @@
         {% for entry in entries_list %}
 
         <div class="pt-2 bg-warning border-1">
-            <center>{{entry.master_class_id.name}}</center>
+            <center>
+					<h5>{{entry.master_class_id.name}}</h5>
+					<h6>{{entry.master_class_id.id}}</h6>
+					<a href="/registration/list/removeEntry/?master_class_id={{entry.master_class_id.id}}">отписаться</a>
+			</center>
         </div>
 
         {% endfor %}
