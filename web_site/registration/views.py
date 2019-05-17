@@ -27,9 +27,6 @@ def index(req): #
 
 def MKList(req):
     """
-    нужно добавить вывод avelable_seats
-    :param req:
-    :return:
     """
     #print('new req with {} '.format(req.session[member_id]))
     master_classes_list = MasterClass.objects.all()
@@ -40,6 +37,16 @@ def MKList(req):
         #entry_list = []
         #for entry_id in entry_id_list:
             #entry_list.append(MasterClass.objects.filter(foreginKey=entry_id.master_class_id))
+        entries = Entry.objects.filter(user_id=req.user.id)
+        entriesKeys = []
+        for obj in entries:
+            entriesKeys.append(obj.master_class_id.id)
+        #print(entriesKeys)
+        # entriesKeys - список id курсов, на конорые подписан пользователь
+        # необходимо получить выбрать в переменную 'master_classes_list' те курсы,
+        # шв которых не совпают с содержимым массива entriesKeys
+        master_classes_list = MasterClass.objects.filter(id__in=entr)
+
         context = RequestContext = {
             'master_classes_list': master_classes_list,
             'auth' : 'yes',
