@@ -11,7 +11,7 @@
     <div class="col-6 pt-4  border-1 border-primary">
         <ul>
             {% for mk in master_classes_list %}
-                    <div class="card ">
+			<div class="card masterClass" mkid="{{mk.id}}">
                         <div class="card-header mb-2 bg-warning text-white">
                             <h6 class="card-title">{{mk.name}}</h6>
                         </div>
@@ -49,7 +49,7 @@
 		{% if request.user.isSuperuser != True %}
         {% for entry in entries_list %}
 
-        <div class="pt-2 bg-warning border-1">
+		<div class="pt-2 bg-warning border-1 entry" enid="{{entry.master_class_id.id}}">
             <center>
 					<h5>{{entry.master_class_id.name}}</h5>
 					<h6>{{entry.master_class_id.id}}</h6>
@@ -60,6 +60,20 @@
         {% endfor %}
 		{% endif %}    	
 	</div>
-
+	<script>
+		$(document).ready(function(){
+			//console.log('ok')
+				let entries = $('.entry').each(function(){
+					id = $(this).attr('enid')
+					$('.masterClass').each(function(){
+						mkid = $(this).attr('mkid')
+						if(mkid === id){
+							console.log(this)
+							$(this).hide()
+						}
+					})
+				})
+		})
+	</script>
 </div>
 {% endblock %}

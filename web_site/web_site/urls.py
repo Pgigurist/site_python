@@ -27,7 +27,7 @@ from registration import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.MKList, name='list'),
     url(r'^special/', views.special, name='special'),
     #url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^registration/', include('registration.urls')),

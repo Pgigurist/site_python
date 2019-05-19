@@ -28,8 +28,12 @@ class MasterClass(models.Model):
     seats = models.PositiveSmallIntegerField(default=50)
 
     def incrimentSeat(self):
-        self.seats = self.seats-1
-        self.save()
+        try:
+            self.seats = self.seats-1
+            self.save()
+            return True
+        except:
+            return False
 
     def decrimentSeat(self):
         self.seats = self.seats+1

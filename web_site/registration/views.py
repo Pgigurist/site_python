@@ -45,7 +45,7 @@ def MKList(req):
         # entriesKeys - список id курсов, на конорые подписан пользователь
         # необходимо получить выбрать в переменную 'master_classes_list' те курсы,
         # шв которых не совпают с содержимым массива entriesKeys
-        master_classes_list = MasterClass.objects.filter(id__in=entr)
+        #master_classes_list = MasterClass.objects.filter(id__in=entr)
 
         context = RequestContext = {
             'master_classes_list': master_classes_list,
@@ -76,13 +76,10 @@ def createEntry(req):
     entry = Entry()
     entry.user_id = req.user
     entry.master_class_id = MasterClass.objects.get(pk=int(req.GET['mk_id']))
-    MasterClass.objects.get(pk=int(req.GET['mk_id'])).incrimentSeat()
-    #mk.seats = mk.seats-1
-    #mk.save()
     
-    #print(mk.seats)
-    #entry.master_class_id.save()
-    entry.save()
+    state = MasterClass.objects.get(pk=int(req.GET['mk_id'])).incrimentSeat()
+    if state:
+        entry.save()
     return HttpResponseRedirect('/registration/list')
 
 def removeEntry(req):
@@ -99,7 +96,7 @@ def special(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('mk_list'))
 
 def register(request): # передаем запрос, пользователю отдали форму,
     registered = False
@@ -137,7 +134,7 @@ def user_login(request): #вход на сайт
                 request.session['member_name'] = user.username
 
                 print('new session with {} '.format(request.session['member_id']))
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect('/registration/list')
             else:
                 return HttpResponse("Your account was inactive.")
         else:
