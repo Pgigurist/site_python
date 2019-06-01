@@ -17,22 +17,46 @@ class UserProfileInfo(models.Model):
     def __str__(self):
         return self.user.username
 
+class Camp(models.Model):
+    date_start = models.DateField(default=django.utils.timezone.now)
+    date_end = models.DateField(default=django.utils.timezone.now)
+    place = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
-class MasterClass(models.Model):
+    class Meta:
+        verbose_name = "Сборы"
+        verbose_name_plural = "Сборы"
+    def __str__(self):
+        return self.name
+
+class Coach(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    date_start = models.DateTimeField(default=django.utils.timezone.now)
-    subject = models.Case()
-    #availiable_seats = .count() ####после регистрации каждого участика будет -1
-    date_end = models.DateTimeField(default=django.utils.timezone.now)
-    seats = models.PositiveSmallIntegerField(default=50)
+
+    class Meta:
+        verbose_name = "Тренер"
+        verbose_name_plural = "Тренера"
+    def __str__(self):
+        return self.name
+
+class MasterClass(models.Model):
+    camp = models.ForeignKey(Camp, models.CASCADE)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
+    subject = models.Case()# что это?
+    date_end = models.DateField(default=django.utils.timezone.now)
+    date_start = models.DateField(default=django.utils.timezone.now)
+    seats = models.PositiveSmallIntegerField(default=15)
+    isAvalable = models.BooleanField(default=True)# флаг для закрытия подачи заявок
 
     def incrimentSeat(self):
-        try:
+        if self.isAvalable:
             self.seats = self.seats-1
+            if self.seats < 1:
+                self.isAvalable = False
             self.save()
             return True
-        except:
+        else:
             return False
 
     def decrimentSeat(self):

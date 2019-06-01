@@ -96,7 +96,7 @@ def special(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('mk_list'))
+    return HttpResponseRedirect('/registration/list')
 
 def register(request): # передаем запрос, пользователю отдали форму,
     registered = False

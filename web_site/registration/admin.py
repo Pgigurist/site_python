@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from .models import MasterClass, Entry, User, UserProfileInfo
+from .models import MasterClass, Entry, User, UserProfileInfo, Camp, Coach
 # Register your models here.
 
 
@@ -28,9 +28,15 @@ class MasterClassAdmin(admin.ModelAdmin):
     #search_fields = ['name', 'date_start', 'date_end'] ###subject add
     #list_filter = ["date_start", 'date_end']#subject
 
+class CoachAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
+
+class CampAdmin(admin.ModelAdmin):
+    list_display = ['name', 'date_start', 'date_end', 'place']
 
 admin.site.register(MasterClass, MasterClassAdmin)
-admin.site.register(Entry)
+admin.site.register(Coach, CoachAdmin)
 admin.site.register(UserProfileInfo)
+admin.site.register(Camp, CampAdmin)
 
