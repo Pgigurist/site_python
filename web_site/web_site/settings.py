@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration.apps.RegistrationConfig',
-    'competitions'
+    'competitions',
+    #'imagekit', //for yandex maps
+    #'smart_select',
+    #'ckeditor',
+    #'cheditor_uploader',
+    #'djeym'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +132,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ['./STATIC/']
 
 LOGIN_URL = '/registration/user_login/'
+
+# django-ckeditor
