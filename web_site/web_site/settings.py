@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registration.apps.RegistrationConfig',
     'competitions',
-    #'imagekit', //for yandex maps
+    'imagekit',
     #'smart_select',
     #'ckeditor',
     #'cheditor_uploader',

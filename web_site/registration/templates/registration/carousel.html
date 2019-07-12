@@ -1,5 +1,6 @@
 
 <div class="row pt-4">
+	{{coach.name}}
   <div class="col item"></div>
   <div class="col item">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -13,22 +14,16 @@
 
 
 
-        {% for mk in master_classes_list %}
+        {% for coach in coaches %}
           <!-- класс актив должен быть присвоен только одному элементу, первому, на данный момент он присваивает
           каждому, как это сделать?-->
-            <div class="carousel-item active">
+            <div class="carousel-item">
                 <div class="card ">
                     <div class="card-header bg-warning text-white">
-                        {{mk.date_start}}
+                        {{coach.name}}
                     </div>
                     <div class="card-body text-dark bg-warning">
                         <h6 class="card-title">{{mk.name}}</h6>
-                        <p class="card-text">{{mk.description}}</p>
-                        {% if auth == 'yes' %}
-                            <a class="ard-link text-dark" href="">записаться</a>
-                        {% else %}
-                            <a class="ard-link text-dark" href="/registration/register">зарегистрироваться</a>
-                        {% endif %}
                     </div>
                 </div>
             </div>

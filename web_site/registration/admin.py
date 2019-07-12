@@ -1,7 +1,20 @@
 from django.contrib import admin
 from .models import *
-from .models import MasterClass, Entry, User, UserProfileInfo, Camp, Coach
+from .models import MasterClass, Entry, User, UserProfileInfo, Camp, Coach, TeamCoaches
 # Register your models here.
+
+class ImagesInLine(admin.TabularInline):
+    model = MediaImage
+    extra = 1
+
+class MediaImageAdmin(admin.ModelAdmin):
+    list_display = ('pub_date', 'title', 'image_img')
+    list_filter = ['pub_date']
+    search_fields = ['title']
+
+    def icon_tag(self):
+        return u'<img src="%s" />' % self.url
+
 
 
 class EntryInline(admin.TabularInline):
@@ -35,8 +48,9 @@ class CoachAdmin(admin.ModelAdmin):
 class CampAdmin(admin.ModelAdmin):
     list_display = ['name', 'date_start', 'date_end', 'place']
 
+admin.site.register(MediaImage, MediaImageAdmin)
 admin.site.register(MasterClass, MasterClassAdmin)
 admin.site.register(Coach, CoachAdmin)
 admin.site.register(UserProfileInfo)
 admin.site.register(Camp, CampAdmin)
-
+admin.site.register(TeamCoaches)

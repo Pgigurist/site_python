@@ -5,6 +5,24 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
+class MediaImage(models.Model):
+    title = models.CharField(max_length = 100)
+    pub_date = models.DateField('date published', null=True)
+    image = models.ImageField(upload_to='static/uploads/img', null=True)
+    def image_img(self):
+        if self.image:
+            return u'<img src="/%s" width="100"/>' % self.image.url
+        else:
+            return '(none)'
+
+    image_img.short_description = 'Thumb'
+    image_img.allow_tags = True
+
+    def __str__(self):
+        return "[%d] %s" % (self.id, self.title)
+        #return self.image_img
+
 class UserProfileInfo(models.Model):
     #надстройка над стандартным классом USERMODEL, берет все теже поля что и в user(наследование)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,7 +40,8 @@ class Camp(models.Model):
     date_end = models.DateField(default=django.utils.timezone.now)
     place = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
-
+    description = models.TextField()
+    #
     class Meta:
         verbose_name = "Сборы"
         verbose_name_plural = "Сборы"
@@ -32,12 +51,22 @@ class Camp(models.Model):
 class Coach(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
+    #mediaImage = models.ForeignKey(MediaImage, models.CASCADE)
 
     class Meta:
         verbose_name = "Тренер"
         verbose_name_plural = "Тренера"
     def __str__(self):
         return self.name
+
+
+class TeamCoaches(models.Model):
+    camp = models.ForeignKey(Camp, models.CASCADE)
+    coach = models.ForeignKey(Coach, models.CASCADE)
+
+    def __str__(self):
+        return self.camp.name
+
 
 class MasterClass(models.Model):
     camp = models.ForeignKey(Camp, models.CASCADE)

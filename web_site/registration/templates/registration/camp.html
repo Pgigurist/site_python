@@ -1,0 +1,38 @@
+{% extends "registration/index.html" %}
+{% block content %}
+<div>
+		{% for camp in camps %}
+		<div class="card">
+			<div class="card-header mb-2 bg-camp text-white">
+					<a href="{% url 'registration:camp_detalis' camp.pk %}">{{camp.name}}</a>
+			</div>
+			<div class="card-body text-dark">
+				<h4>место проведения</h4>
+					<div>
+						{{camp.place}}
+						<br/>
+						должна отображаться карта (в будущем)
+					</div>
+				<p>
+					начало: {{camp.date_start}}
+					окончание: {{camp.date_end}}
+				</p>
+								<div>
+					<h5>группы</h5>
+					<table>
+						{% for group in groups %}
+							{% if group.camp == camp %}
+							<tr>
+								<td>{{group.name}}</td>
+								<td>{{group.description}}</td>
+							</tr>
+							{% endif %}
+						{% endfor %}
+					</table>
+					<a href="{% url 'registration:camp_detalis' camp.pk %}">принять участие<a/>
+				</div>
+			</div> 
+		</div>
+		{% endfor %}
+</div>
+{% endblock %}

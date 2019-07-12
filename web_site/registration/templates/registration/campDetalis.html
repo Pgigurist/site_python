@@ -1,0 +1,68 @@
+{% extends "registration/index.html" %}
+{% block content %}
+
+<div class="container">
+	<div id="campGeneral" class="row">
+		<div id="generalInfo" class="col-sm-6 pl-3">
+			<h3>{{camp.name}}</h3>
+			<h3>{{camp.place}}</h3>
+			<p>
+				начало: {{camp.date_start}}<br/>
+				завершение: {{camp.date_end}}
+			</p>
+		<!--div id="mapInfo">
+			unsupported
+		</div-->
+		</div>
+		<div id="description" class="col-sm-6 pl-3">
+			<p>{{camp.description}}</p>
+		</div>
+	</div>
+	<div id="coaches" class="container">
+		<div class="row">
+			<div class="col mx-auto"><h4>тренерский состав</h4></div>
+		</div>
+		<div class="row pt-10">
+		
+				{% for coach in coaches %}
+				
+				<div class="col my-auto">
+					<div class="row">
+						<div class="col my-auto">
+							{{coach.coach.image.image_img}}
+						</div>
+						<div class="col my-auto">
+							<h5>{{coach.coach.name}}</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col my-auto">
+							<p>{{coach.coach.description}}</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			
+		
+		<!--div>
+		</div-->
+		</div>
+	</div>
+	<div id="groups" class="container">
+				{% for group in groups %}
+			<div class="row">
+				<div class="col my-auto">{{group.name}}</div>
+				<div class="col my-auto">{{group.description}}</div>
+				<div class="col my-auto">
+					{% if group.isAvalable %}
+					<button type="button" class="btn btn-success">записаться</button>
+					{% else %}
+						мест нет
+					{% endif %}
+				</div>
+			</div>
+				{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

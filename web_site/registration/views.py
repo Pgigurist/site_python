@@ -5,7 +5,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 #from django.template import Context, Template
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .models import MasterClass, Entry #, UserForm, UserProfileInfoForm
+from .models import MasterClass, Entry, Camp, TeamCoaches #, UserForm, UserProfileInfoForm
 
 
 
@@ -24,6 +24,27 @@ def index(req): #
     else:
         print('unknown user')
     return render(req, 'registration/index.html', {'master_classes_list' :master_classes_list})
+
+def campList(req):
+
+    context = {
+            'camps' : Camp.objects.all(),
+            'groups': MasterClass.objects.all()
+            }
+    return render(req, 'registration/camp.html', context)
+
+
+def campDetalis(req, camp_id):
+
+
+    context = {
+                'camp' : Camp.objects.get(pk=camp_id),
+ 
+                'coaches': TeamCoaches.objects.filter(camp=camp_id),
+                'groups': MasterClass.objects.filter(camp=camp_id)
+            }
+
+    return render(req, 'registration/campDetalis.html', context)
 
 def MKList(req):
     """

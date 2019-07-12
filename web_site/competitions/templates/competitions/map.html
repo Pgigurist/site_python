@@ -1,0 +1,27 @@
+
+{% block content %}
+	<p>map</p>
+	{% load staticfiles %}
+	<script type="text/javascript" src={% static "test.js" %}></script>
+
+    <div id="ymap"></div>
+    <script>
+		window.onload = function(){
+            var myMap
+            ymaps.ready(init)
+		}
+
+
+        function init(){
+            //let api = '0bd996a4-badf-46ed-b4fc-748760a4da64'
+
+            myMap = new ymaps.Map('ymap',{
+                center: [55.032697, 44.493349],
+                zoom: 13
+            }, {
+                searchControlProvider: 'yandex#search'
+            })
+        }
+    </script>
+{% endblock %}
+

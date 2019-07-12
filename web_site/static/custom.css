@@ -1,0 +1,31 @@
+.imnavbar{
+	background-color: #6f6fe2;
+}
+.imbrand{
+	font-size: 25pt;
+}
+
+.col{
+	/*border: 1pt solid grey;*/
+}
+
+#groups{
+	padding-top: 2em;
+}
+
+#content{
+	padding-top: 2em;
+}
+
+#coaches{
+	padding-top: 2em;
+	text-align: center;
+}
+.bg-camp{
+	background-color: #ffeb3ba6;
+	border-radius: 10pt;
+}
+
+#campGeneral{
+	
+}
