@@ -45,7 +45,7 @@ class Camp(models.Model):
     locationZoom = models.CharField(max_length=10)
     
     def camp_map(self):
-        return mark_safe(u'<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0bd996a4-badf-46ed-b4fc-748760a4da64" type="text/javascript"></script><div id="campMap" width="200" height="200"></div><script>let campMap; ymaps.ready(init); function init(){let api="0bd996a4-badf-46ed-b4fc-748760a4da64"; myMap = new ymaps.Map("campMap",{center:[55.032697,44.493349],zoom:13},{searchControlProvider:"yandex#search"})}</script>')
+        return mark_safe(u'<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0bd996a4-badf-46ed-b4fc-748760a4da64" type="text/javascript"></script><div id="campMap" style="height: 300px"></div><script>let campMap; ymaps.ready(init); function init(){let api="0bd996a4-badf-46ed-b4fc-748760a4da64"; myMap = new ymaps.Map("campMap",{center:[55.032697,44.493349],zoom:13},{searchControlProvider:"yandex#search"})}</script>')
     camp_map.short_description = 'карта'
     camp_map.allow_tags = True
 
