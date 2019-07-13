@@ -7,12 +7,15 @@ class ImagesInLine(admin.TabularInline):
     extra = 1
 
 class MediaImageAdmin(admin.ModelAdmin):
+
+
+    def icon_tag(self):
+        return u'<img src="%s" />' % self.url
+
     list_display = ('pub_date', 'title', 'image_img')
     list_filter = ['pub_date']
     search_fields = ['title']
 
-    def icon_tag(self):
-        return u'<img src="%s" />' % self.url
 
 
 class EntryInline(admin.TabularInline):

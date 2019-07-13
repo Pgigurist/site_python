@@ -33,5 +33,5 @@ urlpatterns = [
     url(r'^registration/', include('registration.urls')),
     url(r'^competitions/', include('competitions.urls')),
     url(r'^logout/$', views.user_logout, name='logout'),
-
+    url(r'^tinymce/', include('tinymce.urls')),
 ]

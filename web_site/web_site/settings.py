@@ -128,7 +128,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['./STATIC/']
-
 LOGIN_URL = '/registration/user_login/'
 
 

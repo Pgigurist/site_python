@@ -8,9 +8,11 @@ class MediaImage(models.Model):
     title = models.CharField(max_length = 100)
     pub_date = models.DateField('date published', null=True)
     image = models.ImageField(upload_to='static/uploads/img', null=True)
+    
     def image_img(self):
         if self.image:
-            return u'<img src="/%s" width="100"/>' % self.image.url
+            from django.utils.safestring import mark_safe
+            return mark_safe(u'<img src="/{0}" width="100"/>'.format(self.image.url))
         else:
             return '(none)'
 
