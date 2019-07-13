@@ -42,10 +42,8 @@ INSTALLED_APPS = [
     'registration.apps.RegistrationConfig',
     'competitions',
     'imagekit',
-    #'smart_select',
-    #'ckeditor',
-    #'cheditor_uploader',
-    #'djeym'
+    #########
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +131,4 @@ STATICFILES_DIRS = ['./STATIC/']
 
 LOGIN_URL = '/registration/user_login/'
 
-# django-ckeditor
+

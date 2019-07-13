@@ -4,8 +4,6 @@ from django.db import models
 ########
 from django.contrib.auth.models import User
 # Create your models here.
-
-
 class MediaImage(models.Model):
     title = models.CharField(max_length = 100)
     pub_date = models.DateField('date published', null=True)
@@ -22,7 +20,6 @@ class MediaImage(models.Model):
     def __str__(self):
         return "[%d] %s" % (self.id, self.title)
         #return self.image_img
-
 class UserProfileInfo(models.Model):
     #надстройка над стандартным классом USERMODEL, берет все теже поля что и в user(наследование)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -41,6 +38,9 @@ class Camp(models.Model):
     place = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     description = models.TextField()
+    locationX = models.CharField(max_length=100)
+    locationY = models.CharField(max_length=100)
+    locationZoom = models.CharField(max_length=10)
     #
     class Meta:
         verbose_name = "Сборы"
@@ -51,7 +51,7 @@ class Camp(models.Model):
 class Coach(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    #mediaImage = models.ForeignKey(MediaImage, models.CASCADE)
+    mediaImage = models.ForeignKey(MediaImage, models.CASCADE, default=None)
 
     class Meta:
         verbose_name = "Тренер"

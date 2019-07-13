@@ -5,9 +5,25 @@
 	font-size: 25pt;
 }
 
+#map{
+	height: 300px;
+}
 .col{
+	border: 1pt solid red;
+}
+.row{
 	/*border: 1pt solid grey;*/
 }
+
+.carousel{
+	height: 300px !important;
+}
+.carousel-inner img{
+	height: 250px !important;
+	margin: 0 auto;
+}
+
+
 
 #groups{
 	padding-top: 2em;
@@ -26,6 +42,10 @@
 	border-radius: 10pt;
 }
 
-#campGeneral{
-	
+img{
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+#campGeneral{	
 }

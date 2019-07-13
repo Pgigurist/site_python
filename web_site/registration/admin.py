@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import *
 from .models import MasterClass, Entry, User, UserProfileInfo, Camp, Coach, TeamCoaches
 # Register your models here.
-
 class ImagesInLine(admin.TabularInline):
     model = MediaImage
     extra = 1
@@ -14,7 +13,6 @@ class MediaImageAdmin(admin.ModelAdmin):
 
     def icon_tag(self):
         return u'<img src="%s" />' % self.url
-
 
 
 class EntryInline(admin.TabularInline):
