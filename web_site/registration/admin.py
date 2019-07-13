@@ -47,7 +47,7 @@ class CoachAdmin(admin.ModelAdmin):
 
 
 class CampAdmin(admin.ModelAdmin):
-    list_display = ['name', 'date_start', 'date_end', 'place']
+    list_display = ['name', 'date_start', 'date_end', 'place', 'camp_map']
 
 admin.site.register(MediaImage, MediaImageAdmin)
 admin.site.register(MasterClass, MasterClassAdmin)

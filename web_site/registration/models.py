@@ -2,6 +2,7 @@ from datetime import date
 import django
 from django.db import models
 ########
+from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 # Create your models here.
 class MediaImage(models.Model):
@@ -11,7 +12,6 @@ class MediaImage(models.Model):
     
     def image_img(self):
         if self.image:
-            from django.utils.safestring import mark_safe
             return mark_safe(u'<img src="/{0}" width="100"/>'.format(self.image.url))
         else:
             return '(none)'
@@ -43,7 +43,12 @@ class Camp(models.Model):
     locationX = models.CharField(max_length=100)
     locationY = models.CharField(max_length=100)
     locationZoom = models.CharField(max_length=10)
-    #
+    
+    def camp_map(self):
+        return mark_safe(u'<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0bd996a4-badf-46ed-b4fc-748760a4da64" type="text/javascript"></script><div id="campMap" width="200" height="200"></div><script>let campMap; ymaps.ready(init); function init(){let api="0bd996a4-badf-46ed-b4fc-748760a4da64"; myMap = new ymaps.Map("campMap",{center:[55.032697,44.493349],zoom:13},{searchControlProvider:"yandex#search"})}</script>')
+    camp_map.short_description = 'карта'
+    camp_map.allow_tags = True
+
     class Meta:
         verbose_name = "Сборы"
         verbose_name_plural = "Сборы"
@@ -93,12 +98,10 @@ class MasterClass(models.Model):
     def decrimentSeat(self):
         self.seats = self.seats+1
         self.save()
-
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
     
-
     def __str__(self):
         return self.name
 
