@@ -1,0 +1,19 @@
+{% extends "registration/base.html" %}
+{% load static %}
+{% block content %}
+	<h3>наши специалисты</h3>
+	{% for coach in coach_list %}
+	<div class="row">
+	<div class="cel">
+		<div class="card" style="width: 18rem;">
+				<img class="card-img-top" src="/{{coach.mediaImage.image}}" alt="фото не загрузилось :(">
+				<div class="card-body">
+					<h4>{{coach.name}}</h4>
+					<p>{{coach.description}}</p>
+					<a href="" class="btn btn-primary">подробнее</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+{% endblock %}

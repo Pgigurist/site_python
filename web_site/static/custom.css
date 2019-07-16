@@ -5,11 +5,15 @@
 	font-size: 25pt;
 }
 
+.dropdown-menu{
+	background-color: #c796f5;
+}
+
 #map{
 	height: 300px;
 }
 .col{
-	border: 1pt solid red;
+	/*border: 1pt solid red;*/
 }
 .row{
 	/*border: 1pt solid grey;*/

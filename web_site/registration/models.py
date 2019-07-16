@@ -9,7 +9,8 @@ class MediaImage(models.Model):
     title = models.CharField(max_length = 100)
     pub_date = models.DateField('date published', null=True)
     image = models.ImageField(upload_to='static/uploads/img', null=True)
-    
+    albom = models.ForeignKey('Albom', blank=True, null=True, on_delete=models.SET_NULL)
+
     def image_img(self):
         if self.image:
             return mark_safe(u'<img src="/{0}" width="100"/>'.format(self.image.url))
@@ -22,6 +23,17 @@ class MediaImage(models.Model):
     def __str__(self):
         return "[%d] %s" % (self.id, self.title)
         #return self.image_img
+
+class Albom(models.Model):
+    name = models.CharField(max_length = 70)
+    camp = models.ForeignKey('Camp', blank=True, null=True, on_delete=models.SET_NULL)
+    class Meta:
+        verbose_name = "Альбом"
+        verbose_name_plural = "Альбомы"
+
+    def __str__(self):
+        return self.name
+
 class UserProfileInfo(models.Model):
     #надстройка над стандартным классом USERMODEL, берет все теже поля что и в user(наследование)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -45,7 +57,9 @@ class Camp(models.Model):
     locationZoom = models.CharField(max_length=10)
     
     def camp_map(self):
-        return mark_safe(u'<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0bd996a4-badf-46ed-b4fc-748760a4da64" type="text/javascript"></script><div id="campMap" style="height: 300px"></div><script>let campMap; ymaps.ready(init); function init(){let api="0bd996a4-badf-46ed-b4fc-748760a4da64"; myMap = new ymaps.Map("campMap",{center:[55.032697,44.493349],zoom:13},{searchControlProvider:"yandex#search"})}</script>')
+        location = u'<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=0bd996a4-badf-46ed-b4fc-748760a4da64" type="text/javascript"></script><div id="campMap" style="height: 300px"></div><script>window.onload = function(){ let campMap; ymaps.ready(init); function init(){let api="0bd996a4-badf-46ed-b4fc-748760a4da64"; myMap = new ymaps.Map("campMap",{center:[55.032697,44.493349],zoom:13},{searchControlProvider:"yandex#search"})}}</script>'
+        print(location)
+        return mark_safe(location)
     camp_map.short_description = 'карта'
     camp_map.allow_tags = True
 

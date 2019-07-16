@@ -2,17 +2,30 @@
 <!--h1>Python & django web site</h1-->
 
     <nav class="navbar navbar-expand-lg navbar-dark imnavbar">
-      <a class="navbar-brand imbrand" href="/">MEDIA_ICE</a>
+			<a class="navbar-brand imbrand" href="{% url 'registration:landing' %}">MEDIA_ICE</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar">
           <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                  <a class="nav-link" href="/registration/list">сборы!</a>
+              <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					сборы
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{% url 'registration:coaches' %}">наша команда</a>
+						<a class="dropdown-item" href="{% url 'registration:camps' %}">анонс сборов</a>
+						<a class="dropdown-item" href="">прошлые пректы</a>
+				  </div>
               </li>
-			  <li class="nav-item">
-				  <a class="nav-link" href="/registration/camps">camps</a>
+			  <li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" id="competitionDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-explanded="false">
+					соревнования
+				  </a>
+				  <div class="dropdown-menu" aria-albellebdy="competitionDropdown">
+					<a class="dropdown-item" href="/competitions/">календарь</a>
+					<a class="dropdown-item" href="">результаты</a>
+				  </div>
 			  </li>
               {% if auth == 'yes' %}
                   <li class="nav-item">

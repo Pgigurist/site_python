@@ -5,7 +5,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 #from django.template import Context, Template
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .models import MasterClass, Entry, Camp, TeamCoaches #, UserForm, UserProfileInfoForm
+from .models import MasterClass, Entry, Camp, TeamCoaches, Coach #, UserForm, UserProfileInfoForm
 
 
 
@@ -25,6 +25,10 @@ def index(req): #
         print('unknown user')
     return render(req, 'registration/index.html', {'master_classes_list' :master_classes_list})
 
+
+def landing(req):
+    return render(req, 'registration/landing.html')
+
 def campList(req):
 
     context = {
@@ -33,6 +37,8 @@ def campList(req):
             }
     return render(req, 'registration/camp.html', context)
 
+def lastCamps(req):
+    pass
 
 def campDetalis(req, camp_id):
 
@@ -92,6 +98,14 @@ def MKDetalis(req, mk_id):
         raise Http404('obj does not exist')
     return render(req, 'registration/mkdetalis.html', mk)
     #pass
+
+
+def coaches(req):
+    """
+        отдает страницу с полным списком тренеров
+    """
+    context = Coach.objects.all()
+    return render(req, 'registration/coaches.html', {'coach_list':context})
 
 def createEntry(req):
     entry = Entry()

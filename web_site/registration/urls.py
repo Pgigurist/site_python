@@ -5,8 +5,10 @@ from . import views
 app_name = 'registration'
 
 urlpatterns = [
+    url(r'^landing/$', views.landing, name='landing'),
     url(r'^list/$', views.MKList, name='mk_list'), #MK list
     url(r'^camps/$', views.campList, name="camps"),
+    url(r'^coaches/$', views.coaches, name="coaches"), # список тренеров
     url(r'^campDetalis/([0-9]+)/$', views.campDetalis, name="camp_detalis"),
     url(r'^(?P<mk_id>[0-9]+)/$', views.MKDetalis, name='mk_id'),#MK detalis
     url(r'^register/$', views.register, name='register'),
